@@ -6,7 +6,7 @@
 
 
 constexpr int length = 9;
-constexpr int blockLength = 3;
+constexpr int rowLength = 9;
 
 class board
 {
@@ -48,8 +48,8 @@ public:
 	}
 
 	void changeAllInBlock(int val, BlockLocation loc) {
-		for (int idx = 0; idx < blockLength; ++idx) {
-			for (int jdx = 0; jdx < blockLength; ++jdx) {
+		for (int idx = 0; idx < rowLength; ++idx) {
+			for (int jdx = 0; jdx < rowLength; ++jdx) {
 				if (findBlockLocation(idx, jdx) == loc) {
 					board_[idx][jdx] = val;
 				}
@@ -65,35 +65,35 @@ public:
 		}
 		else if (idx < 3 && jdx >= 3 && jdx < 6) {
 			// upper middle
-			return BlockLocation::upperLeft;
+			return BlockLocation::upperMiddle;
 		}
 		else if (idx < 3 && jdx >= 6 && jdx < 9) {
 			// upper right
-			return BlockLocation::upperLeft;
+			return BlockLocation::upperRight;
 		}
 		else if (idx >= 3 && idx < 6 && jdx < 3) {
 			// middle left
-			return BlockLocation::upperLeft;
+			return BlockLocation::middleLeft;
 		}
 		else if (idx >= 3 && idx < 6 && jdx >=3 && jdx <6) {
 			// middle middle
-			return BlockLocation::upperLeft;
+			return BlockLocation::middleMiddle;
 		}
 		else if (idx >= 3 && idx < 6 && jdx >=6 && jdx < 9) {
 			// middle right
-			return BlockLocation::upperLeft;
+			return BlockLocation::middleRight;
 		}
 		else if (idx >= 6 && idx < 9 && jdx < 3) {
 			// lower left
-			return BlockLocation::upperLeft;
+			return BlockLocation::lowerLeft;
 		}
 		else if (idx >= 6 && idx < 9 && jdx >= 3 && jdx < 6) {
 			// lower middle
-			return BlockLocation::upperLeft;
+			return BlockLocation::lowerMiddle;
 		}
 		else if (idx >= 6 && jdx < 9 && jdx >= 6 && jdx < 9) {
 			// lower right 
-			return BlockLocation::upperLeft;
+			return BlockLocation::lowerRight;
 		}
 		else {
 			assert(false);
