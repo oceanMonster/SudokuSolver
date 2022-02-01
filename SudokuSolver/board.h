@@ -22,6 +22,7 @@ public:
 
 	board(const board& other) = delete;
 	const board& operator=(const board& other) = delete;
+	~board() = default;
 
 	void print() {
 		for (auto const& row : board_) {
@@ -48,9 +49,9 @@ public:
 	}
 
 	void applyToAll(std::function<void(int)> fcn) {
-		for (int idx = 0; idx < rowLength; ++idx) {
-			for (int jdx = 0; jdx < rowLength; ++jdx) {
-				fcn(board_[idx][jdx]);
+		for (auto& idx : board_) {
+			for (auto& jdx : idx) {
+				fcn(jdx);
 			}
 		}
 	}
