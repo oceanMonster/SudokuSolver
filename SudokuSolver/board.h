@@ -3,6 +3,7 @@
 #include <array>
 #include <iostream>
 #include <cassert>
+#include <functional>
 
 
 constexpr int length = 9;
@@ -32,7 +33,6 @@ public:
 	}
 
 	void set(int idx, int jdx, int val) {
-		//board_.at()
 		board_[idx][jdx] = val;
 	}
 
@@ -45,6 +45,10 @@ public:
 			}
 			stream << "\n";
 		}
+	}
+
+	void applyToAll(std::function<void(int)> fcn) {
+		fcn(3);
 	}
 
 	void changeAllInBlock(int val, BlockLocation loc) {
