@@ -23,7 +23,7 @@ int main() {
 	//b->print();
 
 	std::unique_ptr<board> b{ new board() };
-	b->applyToAll([](int val) {++val; ++val; std::cout << val << "\n"; });
+	b->applyToAll([](int& val) {++val;});
 	b->set(1, 1, 42);
 	b->changeAllInBlock(4, BlockLocation::middleMiddle);
 	b->printer(std::cout);

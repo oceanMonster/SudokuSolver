@@ -48,10 +48,10 @@ public:
 		}
 	}
 
-	void applyToAll(std::function<void(int)> fcn) {
-		for (auto& idx : board_) {
-			for (auto& jdx : idx) {
-				fcn(jdx);
+	void applyToAll(std::function<void(int&)> fcn) {
+		for (auto& row : board_) {
+			for (auto& cell : row) {
+				fcn(cell);
 			}
 		}
 	}
