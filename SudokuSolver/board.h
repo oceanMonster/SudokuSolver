@@ -48,7 +48,11 @@ public:
 	}
 
 	void applyToAll(std::function<void(int)> fcn) {
-		fcn(3);
+		for (int idx = 0; idx < rowLength; ++idx) {
+			for (int jdx = 0; jdx < rowLength; ++jdx) {
+				fcn(board_[idx][jdx]);
+			}
+		}
 	}
 
 	void changeAllInBlock(int val, BlockLocation loc) {
