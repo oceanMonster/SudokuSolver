@@ -1,7 +1,8 @@
-#include "board.h"
+#include "SudokuSolver.h"
+#include "Board9x9.h"
+#include "Solver.h"
 #include <iostream>
 #include <memory>
-#include "SudokuSolver.h"
 
 int main() {
 
@@ -22,11 +23,22 @@ int main() {
 	//std::unique_ptr<board> b{ new board() };
 	//b->print();
 
-	std::unique_ptr<board> b{ new board() };
-	b->applyToAll([](int& val) {++val;});
+	//std::unique_ptr<Board9x9> b{ new Board9x9() };
+	/*b->applyToAll([](int& val) {++val;});
 	b->set(1, 1, 42);
 	b->changeAllInBlock(4, BlockLocation::middleMiddle);
-	b->printer(std::cout);
+	b->printer(std::cout);*/
+	
+
+	Board9x9 b;
+	b.applyToAll([](int& val) {++val; });
+	b.set(1, 1, 42);
+	b.changeAllInBlock(4, BlockLocation::middleMiddle);
+	b.printer(std::cout);
+	std::cout << std::endl;
+
+	Solver s(b);
+	s.printer(std::cout);
 
 	return 0;
 }

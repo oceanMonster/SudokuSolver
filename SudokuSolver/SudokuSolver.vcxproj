@@ -138,12 +138,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="board.cpp" />
+    <ClCompile Include="Board9x9.cpp" />
+    <ClCompile Include="Solver.cpp" />
     <ClCompile Include="SudokuSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockLocation.h" />
-    <ClInclude Include="board.h" />
+    <ClInclude Include="Board9x9.h" />
+    <ClInclude Include="Solver.h" />
     <ClInclude Include="SudokuSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

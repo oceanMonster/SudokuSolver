@@ -9,20 +9,22 @@
 constexpr int length = 9;
 constexpr int rowLength = 9;
 
-class board
+class Board9x9
 {
 public:
-	board() : board_{}
+	Board9x9() : board_{}
 	{
 		//
-		for (auto & row : board_) {
+		for (auto& row : board_) {
 			row.fill(0);
 		}
 	}
 
-	board(const board& other) = delete;
-	const board& operator=(const board& other) = delete;
-	~board() = default;
+	//Board9x9(const Board9x9& other) = delete;
+	//Board9x9(Board9x9&& other) = delete;
+	Board9x9& operator=(const Board9x9& other) = delete;
+	//Board9x9& operator=(Board9x9&& other) = delete;
+	~Board9x9() = default;
 
 	void print() {
 		for (auto const& row : board_) {
@@ -37,6 +39,10 @@ public:
 		board_[idx][jdx] = val;
 	}
 
+	int get(int idx, int jdx) {
+		return board_[idx][jdx];
+	}
+
 	//template<typename T>
 	void printer(std::ostream& stream) {
 		//
@@ -45,6 +51,38 @@ public:
 				stream << cell << "\t";
 			}
 			stream << "\n";
+		}
+	}
+
+	bool isCurrValPresentInRow(const int idx, const int jdx) {
+		const int targetVal = board_[idx][jdx];
+		for (int cellIdx = 0; cellIdx < length; ++cellIdx) {
+			if (cellIdx != idx && board_[cellIdx][jdx] == targetVal) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool isCurrValPresentInColumn(const int idx, const int jdx) {
+		const int targetVal = board_[idx][jdx];
+		for (int cellIdx = 0; cellIdx < length; ++cellIdx) {
+			if (cellIdx != jdx && board_[idx][cellIdx] == targetVal) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool isCurrValPresentInBlock(const int currIdx, const int currJdx, BlockLocation loc) {
+		const int targetVal = board_[currIdx][currJdx];
+		for (int idx = 0; idx < length; ++idx) {
+			for (int jdx = 0; jdx < length; ++jdx) {
+				bool isSelf = (currIdx == idx) && (currJdx == jdx);
+				if (!isSelf && findBlockLocation(idx, jdx) == loc && board_[idx][jdx] == targetVal) {
+					return true;
+				}
+			}
 		}
 	}
 
@@ -84,11 +122,11 @@ public:
 			// middle left
 			return BlockLocation::middleLeft;
 		}
-		else if (idx >= 3 && idx < 6 && jdx >=3 && jdx <6) {
+		else if (idx >= 3 && idx < 6 && jdx >= 3 && jdx < 6) {
 			// middle middle
 			return BlockLocation::middleMiddle;
 		}
-		else if (idx >= 3 && idx < 6 && jdx >=6 && jdx < 9) {
+		else if (idx >= 3 && idx < 6 && jdx >= 6 && jdx < 9) {
 			// middle right
 			return BlockLocation::middleRight;
 		}
@@ -109,7 +147,7 @@ public:
 		}
 	}
 
-	
+
 private:
 	std::array<std::array<int, length>, length> board_;
 };
