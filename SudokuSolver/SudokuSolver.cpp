@@ -1,6 +1,7 @@
 #include "SudokuSolver.h"
 #include "Board9x9.h"
 #include "Solver.h"
+#include "ScoreKeeper.h"
 #include <iostream>
 #include <memory>
 
@@ -29,6 +30,15 @@ int main() {
 	b->changeAllInBlock(4, BlockLocation::middleMiddle);
 	b->printer(std::cout);*/
 	
+	ScoreKeeper* sk = ScoreKeeper::getInstance();
+	std::cout << sk->getScore() << "\n";
+	sk->setScore(42);
+	std::cout << sk->getScore() << "\n";
+
+	ScoreKeeper* sk2 = ScoreKeeper::getInstance();
+	std::cout << sk2->getScore() << "\n";
+	sk2->setScore(69);
+	std::cout << sk2->getScore() << "\n";
 
 	Board9x9 b;
 	b.applyToAll([](int& val) {++val; });
@@ -39,6 +49,7 @@ int main() {
 
 	Solver s(b);
 	s.printer(std::cout);
+	auto x = s.solve();
 
 	return 0;
 }

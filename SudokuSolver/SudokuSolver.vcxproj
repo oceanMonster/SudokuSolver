@@ -139,12 +139,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board9x9.cpp" />
+    <ClCompile Include="ScoreKeeper.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="SudokuSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlockLocation.h" />
     <ClInclude Include="Board9x9.h" />
+    <ClInclude Include="ScoreKeeper.h" />
     <ClInclude Include="Solver.h" />
     <ClInclude Include="SudokuSolver.h" />
   </ItemGroup>
