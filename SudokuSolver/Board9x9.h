@@ -21,8 +21,16 @@ public:
 	}
 
 	//Board9x9(const Board9x9& other) = delete;
+	//Board9x9(const Board9x9& other) {
+	//	//
+	//	board_ = other.board_;
+	//}
+
 	//Board9x9(Board9x9&& other) = delete;
 	Board9x9& operator=(const Board9x9& other) = delete;
+	/*Board9x9& operator=(const Board9x9& other) {
+		board_ = other.board_;
+	}*/
 	//Board9x9& operator=(Board9x9&& other) = delete;
 	~Board9x9() = default;
 

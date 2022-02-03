@@ -13,6 +13,25 @@ public:
 
 	}
 
+	Board9x9 solve() {
+		Board9x9 solvedBoard{};
+
+		// First, calculate the matrix of possibiles
+		populateMatrixOfPossibles();
+
+		// Next Loop over every cell in the board and  determine if 
+		// it is unique it its row, column, or box.
+		// If it is unique in any of those, we have found the value
+		// for that cell
+		for (int idx = 0; idx < length; ++idx) {
+			for (int jdx = 0; jdx < length; ++jdx) {
+				//
+			}
+		}
+
+		return solvedBoard;
+	}
+
 	void printer(std::ostream& stream) {
 		//
 		board_.printer(stream);
@@ -28,6 +47,8 @@ public:
 			}
 		}
 	}
+
+
 
 private:
 	Board9x9 board_;
