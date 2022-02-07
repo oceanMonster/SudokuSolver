@@ -4,6 +4,10 @@
 #include "ScoreKeeper.h"
 #include <iostream>
 #include <memory>
+#include <string_view>
+#include <algorithm>
+#include <sstream>
+#include <iterator>
 
 int main() {
 
@@ -51,5 +55,24 @@ int main() {
 	s.printer(std::cout);
 	auto x = s.solve();
 
+	const char* c = "some    raw         string";
+	std::string_view sv(c);
+	std::cout << sv << "\n";
+	std::cout << sv.size() << "\n";
+	std::cout << sv.empty() << "\n";
+
+	std::string a = "3";
+	double b2 = atof(a.c_str());
+	std::cout << b2 << std::endl;
+
+	std::istringstream iss(c);
+	std::vector<std::string> svv;
+	std::copy(std::istream_iterator<std::string>(iss),
+		std::istream_iterator<std::string>(),
+		std::back_inserter(svv));
+
+	for (const auto& word : svv) {
+		std::cout << word << "\n";
+	}
 	return 0;
 }
