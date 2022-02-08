@@ -26,15 +26,22 @@ public:
 		// it is unique it its row, column, or box.
 		// If it is unique in any of those, we have found the value
 		// for that cell
-		for (int idx = 0; idx < length; ++idx) {
-			for (int jdx = 0; jdx < length; ++jdx) {
-				// check for uniqueness
-				bool isunique = isUniqueInItsRow(idx, jdx) && isUniuqeInItsColumn(idx, jdx) &&
-					isUniqueInItsBox(idx, jdx);
-				if (isunique) {
-					// set solved table to have this value at [idx, jdx]
-					// re-populate matrix of possibles
+		size_t maxIter = 10, iter = 1;
+		while (!isBoardSolved(solvedBoard)) {
+			for (int idx = 0; idx < length; ++idx) {
+				for (int jdx = 0; jdx < length; ++jdx) {
+					// check for uniqueness
+					bool isunique = isUniqueInItsRow(idx, jdx) && isUniuqeInItsColumn(idx, jdx) &&
+						isUniqueInItsBox(idx, jdx);
+					if (isunique) {
+						// set solved table to have this value at [idx, jdx]
+						// re-populate matrix of possibles
+					}
 				}
+			}
+			if (++iter == maxIter) {
+				std::cout << "Max number of tries reached\n";
+				break;
 			}
 		}
 
@@ -49,9 +56,9 @@ public:
 		auto setAtIdxJdx = possibles_[idx][jdx];
 		for (const auto& item : setAtIdxJdx) {
 			int target = item;
-			for (int rowIdx = 0; rowIdx < length; ++rowIdx) {
-				if (rowIdx != idx) {  // self
-					auto setAtrowIdx = possibles_[rowIdx][jdx];
+			for (int rowJdx = 0; rowJdx < length; ++rowJdx) {
+				if (rowJdx != idx) {  // self
+					auto setAtrowIdx = possibles_[idx][rowJdx];
 					if (setAtrowIdx.find(target) != setAtrowIdx.end()) {
 						return false;
 					}
@@ -63,12 +70,35 @@ public:
 
 	bool isUniuqeInItsColumn(const int idx, const int jdx) {
 		//
-		return false;
+		auto setAtIdxJdx = possibles_[idx][jdx];
+		for (const auto& item : setAtIdxJdx) {
+			int target = item;
+			for (int colIdx = 0; colIdx < length; ++colIdx) {
+				if (colIdx != idx) {  // self
+					auto setAtrowIdx = possibles_[colIdx][jdx];
+					if (setAtrowIdx.find(target) != setAtrowIdx.end()) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	bool isUniqueInItsBox(const int idx, const int jdx  /* location enum*/) {
 		//
 		return false;
+	}
+
+	bool isBoardSolved(const Board9x9& solutionBoard) {
+		for (int idx = 0; idx < length; ++idx) {
+			for (int jdx = 0; jdx < length; ++jdx) {
+				if (solutionBoard.get(idx, jdx) == 0) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	void printer(std::ostream& stream) {

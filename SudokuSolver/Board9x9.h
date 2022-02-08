@@ -48,7 +48,7 @@ public:
 		board_[idx][jdx] = val;
 	}
 
-	int get(int idx, int jdx) {
+	int get(int idx, int jdx) const {
 		return board_[idx][jdx];
 	}
 
