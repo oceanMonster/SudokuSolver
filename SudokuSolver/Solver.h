@@ -47,14 +47,18 @@ public:
 		// it is unique, none of the other cells in this row contain sets with
 		// that value.
 		auto setAtIdxJdx = possibles_[idx][jdx];
-		//std::for_each(setAtIdxJdx.begin(), end(setAtIdxJdx), []() {});
-		/*const int targetVal = board_[idx][jdx];
-		for (int cellIdx = 0; cellIdx < length; ++cellIdx) {
-			if (cellIdx != idx && board_[cellIdx][jdx] == targetVal) {
-				return true;
+		for (const auto& item : setAtIdxJdx) {
+			int target = item;
+			for (int rowIdx = 0; rowIdx < length; ++rowIdx) {
+				if (rowIdx != idx) {  // self
+					auto setAtrowIdx = possibles_[rowIdx][jdx];
+					if (setAtrowIdx.find(target) != setAtrowIdx.end()) {
+						return false;
+					}
+				}
 			}
-		}*/
-		return false;
+		}
+		return true;
 	}
 
 	bool isUniuqeInItsColumn(const int idx, const int jdx) {
