@@ -1,5 +1,6 @@
 #pragma once
 #include "BlockLocation.h"
+#include "LocationFinder.h"
 #include <array>
 #include <iostream>
 #include <cassert>
@@ -87,7 +88,7 @@ public:
 		for (int idx = 0; idx < length; ++idx) {
 			for (int jdx = 0; jdx < length; ++jdx) {
 				bool isSelf = (currIdx == idx) && (currJdx == jdx);
-				if (!isSelf && findBlockLocation(idx, jdx) == loc && board_[idx][jdx] == targetVal) {
+				if (!isSelf && LocationFinder::getBlockLocation(idx, jdx) == loc && board_[idx][jdx] == targetVal) {
 					return true;
 				}
 			}
@@ -105,56 +106,12 @@ public:
 	void changeAllInBlock(int val, BlockLocation loc) {
 		for (int idx = 0; idx < rowLength; ++idx) {
 			for (int jdx = 0; jdx < rowLength; ++jdx) {
-				if (findBlockLocation(idx, jdx) == loc) {
+				if (LocationFinder::getBlockLocation(idx, jdx) == loc) {
 					board_[idx][jdx] = val;
 				}
 			}
 		}
 	}
-
-	BlockLocation findBlockLocation(const int idx, const int jdx) {
-		//
-		if (idx < 3 && jdx < 3) {
-			// upper left block
-			return BlockLocation::upperLeft;
-		}
-		else if (idx < 3 && jdx >= 3 && jdx < 6) {
-			// upper middle
-			return BlockLocation::upperMiddle;
-		}
-		else if (idx < 3 && jdx >= 6 && jdx < 9) {
-			// upper right
-			return BlockLocation::upperRight;
-		}
-		else if (idx >= 3 && idx < 6 && jdx < 3) {
-			// middle left
-			return BlockLocation::middleLeft;
-		}
-		else if (idx >= 3 && idx < 6 && jdx >= 3 && jdx < 6) {
-			// middle middle
-			return BlockLocation::middleMiddle;
-		}
-		else if (idx >= 3 && idx < 6 && jdx >= 6 && jdx < 9) {
-			// middle right
-			return BlockLocation::middleRight;
-		}
-		else if (idx >= 6 && idx < 9 && jdx < 3) {
-			// lower left
-			return BlockLocation::lowerLeft;
-		}
-		else if (idx >= 6 && idx < 9 && jdx >= 3 && jdx < 6) {
-			// lower middle
-			return BlockLocation::lowerMiddle;
-		}
-		else if (idx >= 6 && jdx < 9 && jdx >= 6 && jdx < 9) {
-			// lower right 
-			return BlockLocation::lowerRight;
-		}
-		else {
-			assert(false);
-		}
-	}
-
 
 private:
 	std::array<std::array<int, length>, length> board_;

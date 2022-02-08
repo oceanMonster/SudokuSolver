@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board9x9.cpp" />
+    <ClCompile Include="LocationFinder.cpp" />
     <ClCompile Include="ScoreKeeper.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="SudokuSolver.cpp" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="BlockLocation.h" />
     <ClInclude Include="Board9x9.h" />
+    <ClInclude Include="LocationFinder.h" />
     <ClInclude Include="ScoreKeeper.h" />
     <ClInclude Include="Solver.h" />
     <ClInclude Include="SudokuSolver.h" />
