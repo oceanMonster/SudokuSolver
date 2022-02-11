@@ -55,6 +55,25 @@ int main() {
 	s.printer(std::cout);
 	auto x = s.solve();
 
+	BlockLocation bl = BlockLocation::upperMiddle;
+	switch (bl) {
+	case BlockLocation::upperLeft: {
+		std::cout << "upperLeft\n";
+	}
+	case BlockLocation::upperMiddle: {
+		std::cout << "upperMiddle\n";
+		break;
+	}
+	case BlockLocation::upperRight: {
+		std::cout << "upperRight\n";
+	}
+	case BlockLocation::middleLeft: {
+		std::cout << "middleLeft\n";
+	}
+	default:
+		std::cout << "default\n";
+	}
+
 
 	return 0;
 }
