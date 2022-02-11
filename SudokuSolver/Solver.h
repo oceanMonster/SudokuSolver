@@ -32,7 +32,7 @@ public:
 				for (int jdx = 0; jdx < length; ++jdx) {
 					// check for uniqueness
 					bool isunique = isUniqueInItsRow(idx, jdx) && isUniuqeInItsColumn(idx, jdx) &&
-						isUniqueInItsBox(idx, jdx);
+						isUniqueInItsBox(idx, jdx, L);
 					if (isunique) {
 						// set solved table to have this value at [idx, jdx]
 						// re-populate matrix of possibles
@@ -85,8 +85,17 @@ public:
 		return true;
 	}
 
-	bool isUniqueInItsBox(const int idx, const int jdx  /* location enum*/) {
+	bool isUniqueInItsBox(const int idx, const int jdx , const BlockLocation& loc ) {
 		//
+		auto setAtIdxJdx = possibles_[idx][jdx];
+		for (const auto& item : setAtIdxJdx) {
+			for (int cellIdx = 0; cellIdx < length; ++cellIdx) {
+				bool isSelf = cellIdx == idx) && (cellJdx == jdx);
+				if (!isSelf && LocationFinder::getBlockLocation(idx, jdx) == loc){
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
