@@ -13,16 +13,6 @@
 
 int main() {
 
-	std::unordered_map<int*, const void*> mymap = {};
-	int a = 47;
-	double mydbl = 999;
-	double* dptr = &mydbl;
-	const void* myvoid = static_cast<void*>(dptr);
-	mymap.insert(std::make_pair(&a, myvoid));
-
-	const void* mynewvoid = mymap.find(&a)->second;
-	const double* mychar = static_cast<const double*>(mynewvoid);
-	std::cout << *mychar << std::endl;
 
 	//std::unique_ptr<board> b{ new board() };
 	//b->print();
@@ -34,19 +24,6 @@ int main() {
 	b->printer(std::cout);*/
 	
 	ScoreKeeper* sk = ScoreKeeper::getInstance();
-	sk->testMap["hello"] = 47;
-	auto f = sk->testMap.find("hello");
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
-
-	std::cout << f->second << std::endl;
-	std::cout << f->second << std::endl;
 	std::cout << sk->getScore() << "\n";
 	sk->setScore(42);
 	std::cout << sk->getScore() << "\n";
