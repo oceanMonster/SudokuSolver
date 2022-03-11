@@ -9,8 +9,20 @@
 #include <sstream>
 #include <iterator>
 
+#include <unordered_map>
+
 int main() {
 
+	std::unordered_map<int*, const void*> mymap = {};
+	int a = 47;
+	double mydbl = 999;
+	double* dptr = &mydbl;
+	const void* myvoid = static_cast<void*>(dptr);
+	mymap.insert(std::make_pair(&a, myvoid));
+
+	const void* mynewvoid = mymap.find(&a)->second;
+	const double* mychar = static_cast<const double*>(mynewvoid);
+	std::cout << *mychar << std::endl;
 
 	//std::unique_ptr<board> b{ new board() };
 	//b->print();
