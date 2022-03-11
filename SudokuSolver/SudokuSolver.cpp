@@ -34,6 +34,19 @@ int main() {
 	b->printer(std::cout);*/
 	
 	ScoreKeeper* sk = ScoreKeeper::getInstance();
+	sk->testMap["hello"] = 47;
+	auto f = sk->testMap.find("hello");
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
+
+	std::cout << f->second << std::endl;
+	std::cout << f->second << std::endl;
 	std::cout << sk->getScore() << "\n";
 	sk->setScore(42);
 	std::cout << sk->getScore() << "\n";

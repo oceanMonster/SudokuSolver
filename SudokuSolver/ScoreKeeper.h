@@ -1,5 +1,7 @@
 #pragma once
 
+#include <unordered_map>
+
 class ScoreKeeper
 {
 public:
@@ -17,6 +19,8 @@ public:
 	int getScore() {
 		return score_;
 	}
+
+	std::unordered_map<std::string, double> testMap;
 private:
 	static ScoreKeeper* instance_;
 	ScoreKeeper(): score_(14){}
